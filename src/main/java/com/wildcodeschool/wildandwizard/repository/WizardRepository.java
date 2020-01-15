@@ -1,11 +1,17 @@
 package com.wildcodeschool.wildandwizard.repository;
 
 import com.wildcodeschool.wildandwizard.entity.Wizard;
+import com.wildcodeschool.wildandwizard.repository.WizardRepository;
+import com.wildcodeschool.wildandwizard.repository.CrudDao;
+import org.springframework.stereotype.Repository;
+
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Calendar;
 
+@Repository
 public class WizardRepository implements CrudDao<Wizard> {
 
     private final static String DB_URL = "jdbc:mysql://localhost:3306/spring_jdbc_quest?serverTimezone=GMT";
@@ -24,7 +30,8 @@ public class WizardRepository implements CrudDao<Wizard> {
             );
             statement.setString(1, wizard.getFirstName());
             statement.setString(2, wizard.getLastName());
-            statement.setDate(3, wizard.getBirthday());
+            //statement.setDate(3, wizard.getBirthday());
+            statement.setDate(3, wizard.getBirthday(), Calendar.getInstance());
             statement.setString(4, wizard.getBirthPlace());
             statement.setString(5, wizard.getBiography());
             statement.setBoolean(6, wizard.isMuggle());
@@ -118,7 +125,8 @@ public class WizardRepository implements CrudDao<Wizard> {
             );
             statement.setString(1, wizard.getFirstName());
             statement.setString(2, wizard.getLastName());
-            statement.setDate(3, wizard.getBirthday());
+            //statement.setDate(3, wizard.getBirthday());
+            statement.setDate(3, wizard.getBirthday(), Calendar.getInstance());
             statement.setString(4, wizard.getBirthPlace());
             statement.setString(5, wizard.getBiography());
             statement.setBoolean(6, wizard.isMuggle());
